@@ -7,14 +7,14 @@ def addEstudante():
     estudante['id'] = int(input('Digite o id do estudante: '))
     notas = str(input('Digite as notas do estudante (separadas por espaço): '))
     
-    # tratamento para separar e converter as notas
+    # tratamento para separar e converter as notas.
     notas_separadas = notas.split(' ')
     notas_int = [float(nota) for nota in notas_separadas]
     estudante['notas'] = notas_int
 
     listaEstudantes.append(estudante.copy())
 
-# Exibir uma lista de todos os registros de estudantes
+# Exibir uma lista de todos os registros de estudantes.
 def exibirEstudantes():
     print('''
           ---- Lista dos Estudantes ----
@@ -44,7 +44,21 @@ def buscarEstudante():
                     print(f' {k+1}° nota = {v}')
             else:
                 print(f'O id {chave} não está registrado')
-                  
+
+# Calcular e exibir a média de notas de todos os estudantes.
+def calcularMedia():
+    somaNotas = 0
+    totalNotas = 0
+
+    if listaEstudantes == []:
+        print('Nenhum estudante foi registrado ainda')
+    else:
+        for aluno in listaEstudantes:
+            for nota in aluno['notas']:
+                somaNotas += nota
+                totalNotas +=1
+    media = somaNotas / totalNotas  
+    print(f' media das notas de todos os estudantes: {media}')        
     
 
 # Menu principal
@@ -72,6 +86,8 @@ while True:
             exibirEstudantes()
         case '3':
             buscarEstudante()
+        case '4':
+            calcularMedia()
         case '7':
             print('Até logo!')
             break
