@@ -34,16 +34,19 @@ def buscarEstudante():
         print('Nenhum estudante foi registrado ainda')
     else:
         chave = int(input('Digite o ID do estudante que deseja buscar: '))
+        alunoEncontrado = False
         for estudante in listaEstudantes:
             if estudante['id'] == chave:
+                alunoEncontrado = True
                 print()
-                print(f'Id: {estudante['id']}')
-                print(f'Nome: {estudante['nome']}')
+                print(f'Id: {estudante["id"]}')
+                print(f'Nome: {estudante["nome"]}')
                 print('Notas:')
                 for k,v in enumerate(estudante['notas']):
                     print(f' {k+1}° nota = {v}')
-            else:
-                print(f'O id {chave} não está registrado')
+                break
+        if not alunoEncontrado:
+            print(f'O id {chave} não está registrado')
                   
     
 
