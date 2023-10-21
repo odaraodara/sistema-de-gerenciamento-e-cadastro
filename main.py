@@ -4,7 +4,7 @@ estudante = {}
 # Adicionar um novo registro de estudante (nome, ID e notas)
 def addEstudante():
     estudante['nome'] = str(input('Digite o nome do estudante: '))
-    estudante['id'] = str(input('Digite o id do estudante: '))
+    estudante['id'] = int(input('Digite o id do estudante: '))
     notas = str(input('Digite as notas do estudante (separadas por espaço): '))
     
     # tratamento para separar e converter as notas
@@ -21,12 +21,29 @@ def exibirEstudantes():
 
 ID  Nome                            Notas  ''')
     if listaEstudantes == []:
-        print('Nenhum estudante foi registrado')
+        print('Nenhum estudante foi registrado ainda')
     else:    
-        for aluno in listaEstudantes:
-            print(f"{aluno['id']:<3}", end=' ')
-            print(f"{aluno['nome']:<30}", end=' ')
-            print(f"{aluno['notas']}")
+        for estudante in listaEstudantes:
+            print(f"{estudante['id']:<3}", end=' ')
+            print(f"{estudante['nome']:<30}", end=' ')
+            print(f"{estudante['notas']}")
+
+# Procurar um estudante pelo seu ID e exibir seu registro.
+def buscarEstudante():
+    if listaEstudantes == []:
+        print('Nenhum estudante foi registrado ainda')
+    else:
+        chave = int(input('Digite o ID do estudante que deseja buscar: '))
+        for estudante in listaEstudantes:
+            if estudante['id'] == chave:
+                print()
+                print(f'Id: {estudante['id']}')
+                print(f'Nome: {estudante['nome']}')
+                print('Notas:')
+                for k,v in enumerate(estudante['notas']):
+                    print(f' {k+1}° nota = {v}')
+            else:
+                print(f'O id {chave} não está registrado')
                   
     
 
@@ -53,6 +70,8 @@ while True:
             print(f'Registro de {estudante["nome"]} adicionado com sucesso!')
         case '2':
             exibirEstudantes()
+        case '3':
+            buscarEstudante()
         case '7':
             print('Até logo!')
             break
