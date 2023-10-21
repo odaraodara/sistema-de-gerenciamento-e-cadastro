@@ -14,6 +14,22 @@ def addEstudante():
 
     listaEstudantes.append(estudante.copy())
 
+# Exibir uma lista de todos os registros de estudantes
+def exibirEstudantes():
+    print('''
+          ---- Lista dos Estudantes ----
+
+ID  Nome                            Notas  ''')
+    if listaEstudantes == []:
+        print('Nenhum estudante foi registrado')
+    else:    
+        for aluno in listaEstudantes:
+            print(f"{aluno['id']:<3}", end=' ')
+            print(f"{aluno['nome']:<30}", end=' ')
+            print(f"{aluno['notas']}")
+                  
+    
+
 # Menu principal
 
 while True:
@@ -21,7 +37,7 @@ while True:
     | Sistema de Gerenciamento de Registros de Estudantes |
     ---
     1. Adicionar Registro de Estudante
-    2. Exibir Registro de Estudante
+    2. Exibir Registro de Estudantes
     3. Procurar por um Estudante
     4. Calcular Média das Notas
     5. Salvar Registros em Arquivo
@@ -35,6 +51,8 @@ while True:
         case '1':
             addEstudante()
             print(f'Registro de {estudante["nome"]} adicionado com sucesso!')
+        case '2':
+            exibirEstudantes()
         case '7':
             print('Até logo!')
             break
