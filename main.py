@@ -61,7 +61,13 @@ def calcularMedia():
                 somaNotas += nota
                 totalNotas +=1
     media = somaNotas / totalNotas  
-    print(f' media das notas de todos os estudantes: {media}')        
+    print(f' media das notas de todos os estudantes: {media}')  
+
+# Salvar os registros de estudantes em um arquivo de texto.
+def salvarRegistrosTxt():
+    with open('estudantes.txt','w') as arquivo:
+        for aluno in listaEstudantes:
+            arquivo.write(f'{aluno["id"]}, {aluno["nome"]}, {aluno["notas"]} \n')      
     
 
 # Menu principal
@@ -91,6 +97,8 @@ while True:
             buscarEstudante()
         case '4':
             calcularMedia()
+        case'5':
+            salvarRegistrosTxt()
         case '7':
             print('Até logo!')
             break
