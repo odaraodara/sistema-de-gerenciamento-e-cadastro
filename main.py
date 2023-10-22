@@ -13,6 +13,7 @@ def addEstudante():
     estudante['notas'] = notas_int
 
     listaEstudantes.append(estudante.copy())
+    print(f'Registro de {estudante["nome"]} adicionado com sucesso!')
 
 # Exibir uma lista de todos os registros de estudantes.
 def exibirEstudantes():
@@ -115,14 +116,13 @@ while True:
     match escolha:
         case '1':
             addEstudante()
-            print(f'Registro de {estudante["nome"]} adicionado com sucesso!')
         case '2':
             exibirEstudantes()
         case '3':
             buscarEstudante()
         case '4':
             calcularMedia()
-        case'5':
+        case '5':
             salvarRegistrosTxt()
             print('Registro salvo com sucesso no arquivo "estudantes.txt"')
         case '6':
@@ -130,7 +130,5 @@ while True:
         case '7':
             print('Até logo!')
             break
-        case '0':
-            print(listaEstudantes)
         case _:
             print(f'Opção inválida. Digite um número do menu: ')
