@@ -67,8 +67,33 @@ def calcularMedia():
 def salvarRegistrosTxt():
     with open('estudantes.txt','w') as arquivo:
         for aluno in listaEstudantes:
-            arquivo.write(f'{aluno["id"]}, {aluno["nome"]}, {aluno["notas"]} \n')      
-    
+            arquivo.write(f'{aluno["id"]}, {aluno["nome"]}, {aluno["notas"]} \n')   
+
+
+# Carregar os registros de estudantes de um arquivo de texto.
+def carregarRegistrosTxt():
+
+    # ler arquivo
+    with open('estudantes.txt','r') as arquivo:
+        dados = arquivo.readlines()
+
+        # converter dados na string para lista com tipos de dados diferentes
+        for linha in dados:
+            listaAluno = linha.split(',')
+            id = int(listaAluno[0])
+            nome = listaAluno[1]
+            notas_srt = [listaAluno[2].strip("[' ["), listaAluno[3].strip("] \n']")]
+            notas_float = []
+            for nota in notas_srt:
+                nota = float(nota)
+                notas_float.append(nota)
+
+            aluno = {'id': id, 'nome': nome, 'notas': notas_float}
+           
+            # copiar dados do arquivo para lista com o registro dos estudantes
+            listaEstudantes.append(aluno)
+            print('Carregamento realizado com sucesso!')
+
 
 # Menu principal
 
@@ -99,6 +124,13 @@ while True:
             calcularMedia()
         case'5':
             salvarRegistrosTxt()
+            print('Registro salvo com sucesso no arquivo "estudantes.txt"')
+        case '6':
+            carregarRegistrosTxt()
         case '7':
             print('Até logo!')
             break
+        case '0':
+            print(listaEstudantes)
+        case _:
+            print(f'Opção inválida. Digite um número do menu: ')
