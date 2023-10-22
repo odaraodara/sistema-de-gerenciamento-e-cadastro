@@ -34,16 +34,19 @@ def buscarEstudante():
         print('Nenhum estudante foi registrado ainda')
     else:
         chave = int(input('Digite o ID do estudante que deseja buscar: '))
+        alunoEncontrado = False
         for estudante in listaEstudantes:
             if estudante['id'] == chave:
+                alunoEncontrado = True
                 print()
-                print(f'Id: {estudante['id']}')
-                print(f'Nome: {estudante['nome']}')
+                print(f'Id: {estudante["id"]}')
+                print(f'Nome: {estudante["nome"]}')
                 print('Notas:')
                 for k,v in enumerate(estudante['notas']):
                     print(f' {k+1}° nota = {v}')
-            else:
-                print(f'O id {chave} não está registrado')
+                break
+        if not alunoEncontrado:
+            print(f'O id {chave} não está registrado') 
 
 # Calcular e exibir a média de notas de todos os estudantes.
 def calcularMedia():
@@ -58,7 +61,13 @@ def calcularMedia():
                 somaNotas += nota
                 totalNotas +=1
     media = somaNotas / totalNotas  
-    print(f' media das notas de todos os estudantes: {media}')        
+    print(f' media das notas de todos os estudantes: {media}')  
+
+# Salvar os registros de estudantes em um arquivo de texto.
+def salvarRegistrosTxt():
+    with open('estudantes.txt','w') as arquivo:
+        for aluno in listaEstudantes:
+            arquivo.write(f'{aluno["id"]}, {aluno["nome"]}, {aluno["notas"]} \n')      
     
 
 # Menu principal
@@ -88,6 +97,8 @@ while True:
             buscarEstudante()
         case '4':
             calcularMedia()
+        case'5':
+            salvarRegistrosTxt()
         case '7':
             print('Até logo!')
             break
